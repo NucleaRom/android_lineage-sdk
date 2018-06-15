@@ -79,6 +79,16 @@ public final class LineageSettings {
     public static final String ACTION_LIVEDISPLAY_SETTINGS =
             "lineageos.settings.LIVEDISPLAY_SETTINGS";
 
+    /**
+     * Activity Action: Show Trust interface settings
+     * <p>
+     * Input: Nothing.
+     * <p>
+     * Output: Nothing.
+     */
+    public static final String ACTION_TRUST_INTERFACE =
+            "lineageos.settings.TRUST_INTERFACE";
+
     // region Call Methods
 
     /**
@@ -1529,6 +1539,15 @@ public final class LineageSettings {
                 new InclusiveIntegerRangeValidator(-3, 1);
 
         /**
+         * Did we tell the user about the trust brand and interface?
+         * @hide
+         */
+        public static final String TRUST_INTERFACE_HINTED = "trust_interface_hinted";
+
+        /** @hide */
+        public static final Validator TRUST_INTERFACE_HINTED_VALIDATOR = sBooleanValidator;
+
+        /**
          *  Enable statusbar double tap gesture on to put device to sleep
          *  0 = 0ff, 1 = on
          */
@@ -1550,7 +1569,7 @@ public final class LineageSettings {
 
         /**
          * Show search bar in recents
-         * 0 = 0ff, 1 = on
+         * 0 = Off, 1 = on
          */
         public static final String RECENTS_SHOW_SEARCH_BAR = "recents_show_search_bar";
 
@@ -2011,6 +2030,15 @@ public final class LineageSettings {
                 sNonNegativeIntegerValidator;
 
         /**
+         * List of long-screen apps.
+         */
+        public static final String LONG_SCREEN_APPS = "long_screen_apps";
+
+        /** @hide */
+        public static final Validator LONG_SCREEN_APPS_VALIDATOR =
+                sAlwaysTrueValidator;
+
+        /**
          * I can haz more bukkits
          * @hide
          */
@@ -2232,6 +2260,7 @@ public final class LineageSettings {
             VALIDATORS.put(DISPLAY_COLOR_ENHANCE, DISPLAY_COLOR_ENHANCE_VALIDATOR);
             VALIDATORS.put(DISPLAY_COLOR_ADJUSTMENT, DISPLAY_COLOR_ADJUSTMENT_VALIDATOR);
             VALIDATORS.put(LIVE_DISPLAY_HINTED, LIVE_DISPLAY_HINTED_VALIDATOR);
+            VALIDATORS.put(TRUST_INTERFACE_HINTED, TRUST_INTERFACE_HINTED_VALIDATOR);
             VALIDATORS.put(DOUBLE_TAP_SLEEP_GESTURE, DOUBLE_TAP_SLEEP_GESTURE_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_SHOW_WEATHER, STATUS_BAR_SHOW_WEATHER_VALIDATOR);
             VALIDATORS.put(RECENTS_SHOW_SEARCH_BAR, RECENTS_SHOW_SEARCH_BAR_VALIDATOR);
@@ -2298,6 +2327,8 @@ public final class LineageSettings {
                     DISPLAY_PICTURE_ADJUSTMENT_VALIDATOR);
             VALIDATORS.put(ACCELEROMETER_ROTATION_ANGLES,
                     ACCELEROMETER_ROTATION_ANGLES_VALIDATOR);
+            VALIDATORS.put(LONG_SCREEN_APPS,
+                    LONG_SCREEN_APPS_VALIDATOR);
             VALIDATORS.put(__MAGICAL_TEST_PASSING_ENABLER,
                     __MAGICAL_TEST_PASSING_ENABLER_VALIDATOR);
         };
@@ -3019,6 +3050,16 @@ public final class LineageSettings {
         /** @hide */
         public static final Validator NETWORK_TRAFFIC_SHOW_UNITS_VALIDATOR = sBooleanValidator;
 
+        /**
+         * Enable displaying the Trust service's notifications
+         * 0 = 0ff, 1 = on
+         */
+        public static final String TRUST_NOTIFICATIONS = "trust_notifications";
+
+        /** @hide */
+        public static final Validator TRUST_NOTIFICATIONS_VALIDATOR =
+                sBooleanValidator;
+
         // endregion
 
         /**
@@ -3128,6 +3169,7 @@ public final class LineageSettings {
             VALIDATORS.put(NETWORK_TRAFFIC_AUTOHIDE, NETWORK_TRAFFIC_AUTOHIDE_VALIDATOR);
             VALIDATORS.put(NETWORK_TRAFFIC_UNITS, NETWORK_TRAFFIC_UNITS_VALIDATOR);
             VALIDATORS.put(NETWORK_TRAFFIC_SHOW_UNITS, NETWORK_TRAFFIC_SHOW_UNITS_VALIDATOR);
+            VALIDATORS.put(TRUST_NOTIFICATIONS, TRUST_NOTIFICATIONS_VALIDATOR);
         }
 
         /**
